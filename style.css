@@ -1,0 +1,206 @@
+/* General Styling */
+.hotel-info {
+    display: flex;
+    align-items: center;
+    padding: 8px 20px;
+}
+
+.hotel-details {
+    flex: 1; /* Allow the details to take the remaining space */
+    margin: 10px;
+}
+
+.name-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Spacing between name and rating */
+}
+
+.name-rating h1 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    font-size: 0.8em; /* Adjust star size */
+    color: #ffcc00; /* Gold for stars */
+    margin-left: 10px;
+}
+
+.address {
+    font-size: 1em;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* Slim Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px; /* Reduced padding for a slimmer navbar */
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+#logo {
+    margin-right: 10px; /* Spacing between logo and navbar items */
+}
+
+.logo {
+    margin: 0 10px;
+    width: 40px; /* Smaller logo for a slimmer look */
+    height: auto;
+    display: inline-block;
+    vertical-align: middle; /* Align logo with text */
+}
+
+/* Navbar Links */
+.navbar-links {
+    display: flex;
+    gap: 15px; /* Adjusted spacing for slimmer navbar */
+    margin-right: 20px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    font-size: 0.9em; /* Slightly smaller font size */
+    color: black;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.navbar-links a:hover {
+    transform: scale(1.1);
+    color: blue; /* Highlight color on hover */
+}
+
+/* Availability Section */
+.availability-section {
+    margin-top: 123px;
+    padding: 20px;
+    background-color: #0d239d;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.availability-section h2 {
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.check-availability {
+    margin-top: 20px;
+}
+
+.form-control {
+    height: 50px; /* Uniform input box height */
+}
+
+.btn {
+    margin: 0;
+    height: 38px; /* Match button height with input boxes */
+}
+
+/* Room Section */
+.room-container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.room-section {
+    background-color: #fdf9e6;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.room-image {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.amenities span {
+    margin-right: 8px;
+}
+
+/* Fixed Summary */
+.fixed-summary {
+    position: sticky;
+    top: 140px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.footer {
+    background: #0b1c80;
+}
+
+/* Tabs */
+.nav-tabs .nav-link {
+    font-weight: bold;
+    color: #555;
+}
+
+.nav-tabs .nav-link.active {
+    color: #000;
+    border-color: #ddd #ddd #fff;
+}
+
+.tab-content {
+    background-color: #f8f9fa;
+}
+
+/* Cards */
+.card-img-top {
+    height: 200px; /* Fixed image height */
+    object-fit: cover; /* Ensures image covers the card area */
+}
+
+.facility-card {
+    text-align: center;
+    margin: 5px;
+    font-size: 0.8rem; /* Smaller font size */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.facility-icon {
+    font-size: 24px; /* Icon size */
+    color: #007bff; /* Bootstrap primary color */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hotel-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .name-rating {
+        gap: 5px;
+    }
+
+    .address {
+        font-size: 0.9em; /* Slightly smaller font */
+    }
+
+    .logo {
+        margin-left: 10px;
+        width: 35px; /* Smaller logo size */
+    }
+
+    .facility-card {
+        max-width: 100px; /* Adjust width */
+    }
+}

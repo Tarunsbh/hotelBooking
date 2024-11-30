@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="hotelData.js"></script>
+    <script src="script.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS Bundle (includes Popper.js) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light bg-light fixed-top">
+
+            <div class="hotel-info d-flex align-items-center">
+                <div id="logo">
+                    <img id="hotelLogo" src="default-logo.jpg" alt="Hotel Logo"
+                        style="max-width: 100px; max-height: 100px;" />
+                </div>
+                <div class="hotel-details ms-3">
+                    <div class="name-rating">
+                        <h1 id="hotelName" class="hotel-name">Hotel Name</h1>
+                        <span class="rating" id="hotelStars">
+                            <!-- Star ratings will be inserted dynamically -->
+                        </span>
+                    </div>
+                    <p class="address" id="hotelAddress">Hotel Address</p>
+                </div>
+            </div>
+
+
+            <div class="navbar-links">
+                <a href="#photo-gallery">Photo Gallery</a>
+                <a href="#property-info">Property Info</a>
+                <a href="#facilities">Facilities</a>
+                <a href="#location">Location</a>
+                <a href="#accommodation">Accommodation</a>
+            </div>
+        </nav>
+
+
+    </header>
+    <main>
+        <div class="container-fluid">
+            <!-- Check Availability Section -->
+            <div class="availability-section">
+                <form class="availability-form d-flex align-items-center">
+                    <div class="form-group flex-fill mr-2">
+                        <input type="date" id="checkin" name="checkin" class="form-control" required>
+                    </div>
+                    <div class="form-group flex-fill mr-2">
+                        <input type="date" id="checkout" name="checkout" class="form-control" required>
+                    </div>
+                    <div class="form-group flex-fill mr-2">
+                        <input type="number" id="nights" name="nights" class="form-control" readonly
+                            placeholder="Total Nights">
+                    </div>
+                    <div class="form-group flex-fill">
+                        <button type="button" class="btn btn-primary check-availability"
+                            onclick="checkAvailability()">Check Availability</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Room Selection Section -->
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Room Selection Section (Left Side) -->
+                    <div class="room-container col-md-8">
+                        <!-- Room Section for Deluxe Room -->
+                        <div class="room-section card mb-4 p-3">
+                            <!-- Room Image and Information Here -->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="./content/Room photos/room1.jpg" alt="Deluxe Room" class="room-image">
+                                </div>
+                                <div class="col-md-8">
+                                    <h5>Deluxe Room</h5>
+                                    <p>The Deluxe Double Room offers a relaxed stay with air conditioning, LCD TV, and
+                                        attached bathroom with hot and cold water. Complimentary Wi-Fi and welcome drink
+                                        included.</p>
+                                    <!-- Additional Room Details like Amenities, Room and Meal Selection, Guest Selection, and Price -->
+                                    <!-- Amenities -->
+                                    <div class="amenities mb-2">
+                                        <span>🌞</span><span>🌐</span><span>🖥️</span><span>☕</span><span>📞</span><span>🔒</span>
+                                    </div>
+                                    <!-- Room and Meal Selection -->
+                                    <div class="selection-group d-inline-block me-3">
+                                        <label for="select-room">Select Room</label>
+                                        <select id="select-room" class="form-control form-control-sm">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                    </div>
+                                    <div class="selection-group d-inline-block">
+                                        <label for="meal-plan">Meal Plan</label>
+                                        <select id="meal-plan" class="form-control form-control-sm">
+                                            <option>Room Only</option>
+                                            <option>Breakfast</option>
+                                            <option>Half Board</option>
+                                            <option>Full Board</option>
+                                        </select>
+                                    </div>
+                                    <!-- Guest Selection -->
+                                    <div class="guests-selection d-flex mt-3">
+                                        <div class="selection-group me-3">
+                                            <label>Adults</label>
+                                            <select class="form-control form-control-sm">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                        </div>
+                                        <div class="selection-group me-3">
+                                            <label>Child (5-12 yrs)</label>
+                                            <select class="form-control form-control-sm">
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
+                                        </div>
+                                        <div class="selection-group">
+                                            <label>Child (&lt;5 yrs)</label>
+                                            <select class="form-control form-control-sm">
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <!-- Price Section -->
+                                    <div class="price-section mt-3 d-flex justify-content-between align-items-center">
+                                        <span>Room Price</span>
+                                        <span class="price">INR 4,136</span>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Example of another room -->
+                        <div class="room-section card mb-4 p-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="./content/Room photos/room2.jpg" alt="Elite Room" class="room-image">
+                                </div>
+                                <div class="col-md-8">
+                                    <h5>Elite Room</h5>
+                                    <p>The Elite Room offers luxurious amenities with air conditioning, LCD TV, and an
+                                        attached bathroom with hot and cold water. Wi-Fi and welcome drink are included.
+                                    </p>
+                                    <!-- Additional Room Details like Amenities, Room and Meal Selection, Guest Selection, and Price -->
+                                    <!-- Amenities -->
+                                    <div class="amenities mb-2">
+                                        <span>🌞</span><span>🌐</span><span>🖥️</span><span>☕</span><span>📞</span><span>🔒</span>
+                                    </div>
+                                    <!-- Room and Meal Selection -->
+                                    <div class="selection-group d-inline-block me-3">
+                                        <label for="select-room">Select Room</label>
+                                        <select id="select-room" class="form-control form-control-sm">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                    </div>
+                                    <div class="selection-group d-inline-block">
+                                        <label for="meal-plan">Meal Plan</label>
+                                        <select id="meal-plan" class="form-control form-control-sm">
+                                            <option>Room Only</option>
+                                            <option>Breakfast</option>
+                                            <option>Half Board</option>
+                                            <option>Full Board</option>
+                                        </select>
+                                    </div>
+                                    <!-- Guest Selection -->
+                                    <div class="guests-selection d-flex mt-3">
+                                        <div class="selection-group me-3">
+                                            <label>Adults</label>
+                                            <select class="form-control form-control-sm">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                        </div>
+                                        <div class="selection-group me-3">
+                                            <label>Child (5-12 yrs)</label>
+                                            <select class="form-control form-control-sm">
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
+                                        </div>
+                                        <div class="selection-group">
+                                            <label>Child (&lt;5 yrs)</label>
+                                            <select class="form-control form-control-sm">
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <!-- Price Section -->
+                                    <div class="price-section mt-3 d-flex justify-content-between align-items-center">
+                                        <span>Room Price</span>
+                                        <span class="price">INR 4,136</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add more rooms as needed -->
+                        <div class="room-section card mb-4 p-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="./content/Room photos/room3.png" alt="Elite Room" class="room-image">
+                                </div>
+                                <div class="col-md-8">
+                                    <h5>Elite Room</h5>
+                                    <p>The Elite Room offers luxurious amenities with air conditioning, LCD TV, and an
+                                        attached bathroom with hot and cold water. Wi-Fi and welcome drink are included.
+                                    </p>
+                                    <!-- Additional Room Details like Amenities, Room and Meal Selection, Guest Selection, and Price -->
+                                    <!-- Amenities -->
+                                    <div class="amenities mb-2">
+                                        <span>🌞</span><span>🌐</span><span>🖥️</span><span>☕</span><span>📞</span><span>🔒</span>
+                                    </div>
+                                    <!-- Room and Meal Selection -->
+                                    <div class="selection-group d-inline-block me-3">
+                                        <label for="select-room">Select Room</label>
+                                        <select id="select-room" class="form-control form-control-sm">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                    </div>
+                                    <div class="selection-group d-inline-block">
+                                        <label for="meal-plan">Meal Plan</label>
+                                        <select id="meal-plan" class="form-control form-control-sm">
+                                            <option>Room Only</option>
+                                            <option>Breakfast</option>
+                                            <option>Half Board</option>
+                                            <option>Full Board</option>
+                                        </select>
+                                    </div>
+                                    <!-- Guest Selection -->
+                                    <div class="guests-selection d-flex mt-3">
+                                        <div class="selection-group me-3">
+                                            <label>Adults</label>
+                                            <select class="form-control form-control-sm">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                        </div>
+                                        <div class="selection-group me-3">
+                                            <label>Child (5-12 yrs)</label>
+                                            <select class="form-control form-control-sm">
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
+                                        </div>
+                                        <div class="selection-group">
+                                            <label>Child (&lt;5 yrs)</label>
+                                            <select class="form-control form-control-sm">
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <!-- Price Section -->
+                                    <div class="price-section mt-3 d-flex justify-content-between align-items-center">
+                                        <span>Room Price</span>
+                                        <span class="price">INR 4,136</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="room-section card mb-4 p-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="./content/Room photos/room2.jpg" alt="Elite Room" class="room-image">
+                                </div>
+                                <div class="col-md-8">
+                                    <h5>Elite Room</h5>
+                                    <p>The Elite Room offers luxurious amenities with air conditioning, LCD TV, and an
+                                        attached bathroom with hot and cold water. Wi-Fi and welcome drink are included.
+                                    </p>
+                                    <!-- Additional Room Details like Amenities, Room and Meal Selection, Guest Selection, and Price -->
+                                    <!-- Amenities -->
+                                    <div class="amenities mb-2">
+                                        <span>🌞</span><span>🌐</span><span>🖥️</span><span>☕</span><span>📞</span><span>🔒</span>
+                                    </div>
+                                    <!-- Room and Meal Selection -->
+                                    <div class="selection-group d-inline-block me-3">
+                                        <label for="select-room">Select Room</label>
+                                        <select id="select-room" class="form-control form-control-sm">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                    </div>
+                                    <div class="selection-group d-inline-block">
+                                        <label for="meal-plan">Meal Plan</label>
+                                        <select id="meal-plan" class="form-control form-control-sm">
+                                            <option>Room Only</option>
+                                            <option>Breakfast</option>
+                                            <option>Half Board</option>
+                                            <option>Full Board</option>
+                                        </select>
+                                    </div>
+                                    <!-- Guest Selection -->
+                                    <div class="guests-selection d-flex mt-3">
+                                        <div class="selection-group me-3">
+                                            <label>Adults</label>
+                                            <select class="form-control form-control-sm">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                        </div>
+                                        <div class="selection-group me-3">
+                                            <label>Child (5-12 yrs)</label>
+                                            <select class="form-control form-control-sm">
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
+                                        </div>
+                                        <div class="selection-group">
+                                            <label>Child (&lt;5 yrs)</label>
+                                            <select class="form-control form-control-sm">
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <!-- Price Section -->
+                                    <div class="price-section mt-3 d-flex justify-content-between align-items-center">
+                                        <span>Room Price</span>
+                                        <span class="price">INR 4,136</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Guest Information Section -->
+                        <div class="guest-info-section card p-4 my-4">
+                            <h4>Guest Information</h4>
+                            <form>
+                                <!-- First Name -->
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="first-name"
+                                        placeholder="Enter First Name" required>
+                                </div>
+
+                                <!-- Last Name -->
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="last-name" placeholder="Enter Last Name"
+                                        required>
+                                </div>
+
+                                <!-- Email Address -->
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="email"
+                                        placeholder="Enter Email Address" required>
+                                </div>
+
+                                <!-- Phone Number with Country Code Dropdown -->
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <select id="country-code" class="form-control" required>
+                                            <option selected>+1 (USA)</option>
+                                            <option>+91 (India)</option>
+                                            <option>+44 (UK)</option>
+                                            <option>+61 (Australia)</option>
+                                            <option>+81 (Japan)</option>
+                                            <!-- Add more country codes as needed -->
+                                        </select>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="tel" class="form-control" id="phone-number"
+                                            placeholder="Enter Phone Number" required>
+                                    </div>
+                                </div>
+
+                                <!-- City -->
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="city" placeholder="Enter City" required>
+                                </div>
+
+                                <!-- Country Dropdown -->
+                                <div class="form-group">
+                                    <select id="country" class="form-control" required>
+                                        <option selected>United States</option>
+                                        <option>India</option>
+                                        <option>United Kingdom</option>
+                                        <option>Australia</option>
+                                        <option>Japan</option>
+                                        <!-- Add more countries as needed -->
+                                    </select>
+                                </div>
+
+                            </form>
+
+                        </div>
+                        <!-- Reservation Policy and Terms & Conditions Section -->
+                        <div class="policy-section card p-4 my-4">
+                            <h4>Reservation Policy and Terms & Conditions</h4>
+                            <ul>
+                                <li>Early check-in or late check-out is subject to availability and may be chargeable by
+                                    the hotel directly.</li>
+                                <li>Check-in time is 2:00 PM, Check-out time is 11:00 AM.</li>
+                                <li>Guests are required to produce a valid ID proof at the time of check-in.</li>
+                                <li>Foreign guests need to produce a valid passport with a visa, whereas Indian guests
+                                    need to produce a valid government-approved ID. PAN card will not be considered as
+                                    proof.</li>
+                                <li>Guests are required to show a photo identification and credit card upon check-in.
+                                </li>
+                                <li>All special requests are subject to availability and additional charges may apply.
+                                </li>
+                                <li>Cancellation Policy:
+                                    <ul>
+                                        <li>If cancelled before 7 days: 85% refund</li>
+                                        <li>Between 7 days - 72 hours: 50% refund</li>
+                                        <li>Less than 72 hours, No-Shows, or Early Checkout: No refund</li>
+                                    </ul>
+                                </li>
+                                <li>Local citizens of Delhi and Delhi NCR are not eligible for booking rooms.</li>
+                                <li>We reserve the right to cancel or modify reservations where it appears that a
+                                    customer has engaged in fraudulent or inappropriate activity or under other
+                                    circumstances where it appears that the reservations contain or resulted from a
+                                    mistake or error.</li>
+                                <li>To make modifications or cancellations, please log in to the "Cancel/Reschedule
+                                    Booking" section on the booking page.</li>
+                                <li>Visitors are not allowed in guest rooms.</li>
+                                <li>Refunds shall be initiated within 48 hours of receiving the request, and the payment
+                                    would be credited within 5-7 working days via the same mode as used while making the
+                                    booking.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Reservation Summary Section -->
+                    <div class="col-md-4">
+                        <div class="reservation-summary fixed-summary">
+                            <h5>Reservation Summary</h5>
+                            <p>Check In: <span id="checkin-date">02 Nov, 2024</span></p>
+                            <p>Check Out: <span id="checkout-date">03 Nov, 2024</span></p>
+                            <p>Deluxe Room</p>
+                            <p>Meal Plan: Room Only</p>
+                            <p>Adults: 2</p>
+                            <p>Child (&lt;5 yrs): 0</p>
+                            <p>Child (5-12 yrs): 0</p>
+                            <hr>
+                            <p>Total Charges: <span>INR 4,635.71</span></p>
+                            <p>Total Taxes: <span>INR 556.29</span></p>
+                            <h5>Grand Total: <span>INR 5,192.00</span></h5>
+                            <button class="btn btn-primary btn-block mt-3">Book Now</button>
+                        </div>
+                    </div>
+                    <!-- Tabs Section -->
+
+                    <div class="container-fluid my-4">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <!-- Tab Navigation -->
+                                <ul class="nav nav-tabs" id="detailsTabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="gallery-tab" data-bs-toggle="tab"
+                                            data-bs-target="#gallery" type="button" role="tab" aria-controls="gallery"
+                                            aria-selected="true">
+                                            Photo Gallery
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="info-tab" data-bs-toggle="tab"
+                                            data-bs-target="#info" type="button" role="tab" aria-controls="info"
+                                            aria-selected="false">
+                                            Property Info
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="facilities-tab" data-bs-toggle="tab"
+                                            data-bs-target="#facilities" type="button" role="tab"
+                                            aria-controls="facilities" aria-selected="false">
+                                            Facilities
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="location-tab" data-bs-toggle="tab"
+                                            data-bs-target="#location" type="button" role="tab" aria-controls="location"
+                                            aria-selected="false">
+                                            Location
+                                        </button>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab Content -->
+                                <div class="tab-content p-3 border border-top-0" id="detailsTabsContent">
+                                    <!-- Photo Gallery Tab -->
+                                    <div class="tab-pane fade show active" id="gallery" role="tabpanel"
+                                        aria-labelledby="gallery-tab">
+                                        <div class="row" id="photoGallery">
+                                            <!-- Dynamic Photos will be injected here -->
+                                        </div>
+                                    </div>
+
+                                    <!-- Property Info Tab -->
+                                    <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+                                    </div>
+
+                                    <!-- Facilities Tab -->
+                                    <div class="tab-pane fade" id="facilities" role="tabpanel"
+                                        aria-labelledby="facilities-tab">
+                                        <div class="facility-container row text-center" id="facilitiesContainer">
+                                            <!-- Facilities will be dynamically inserted here -->
+                                        </div>
+                                    </div>
+
+                                    <!-- Location Tab -->
+                                    <div class="tab-pane fade" id="location" role="tabpanel"
+                                        aria-labelledby="location-tab">
+                                        <!-- Map Section -->
+                                        <div class="map-container mt-4 d-flex justify-content-center">
+                                            <div class="text-center" style="width: 100%; max-width: 100%;">
+                                                <div id="map"
+                                                    style="height: 400px; width: 100%; border: 1px solid #ddd;"></div>
+                                                <button id="navigateBtn" class="btn btn-primary mt-3">
+                                                    <i class="fas fa-directions"></i> Get Directions
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer text-light pt-4 pb-2">
+                <div class="container">
+                    <div class="row">
+                        <!-- About Section -->
+                        <div class="col-md-4">
+                            <h5>About Us</h5>
+                            <p>The Corus Hotel is a luxurious, centrally-located hotel offering an exceptional
+                                experience with premium facilities, comfortable accommodations, and friendly
+                                service.
+                            </p>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div class="col-md-2">
+                            <h5>Quick Links</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#photo-gallery" class="text-light">Photo Gallery</a></li>
+                                <li><a href="#property-info" class="text-light">Property Info</a></li>
+                                <li><a href="#facilities" class="text-light">Facilities</a></li>
+                                <li><a href="#location" class="text-light">Location</a></li>
+                                <li><a href="#accommodation" class="text-light">Accommodation</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="col-md-3">
+                            <h5>Contact Us</h5>
+                            <p><i class="fas fa-map-marker-alt"></i> Connaught Place, New Delhi, India</p>
+                            <p><i class="fas fa-phone-alt"></i> +91 123 456 7890</p>
+                            <p><i class="fas fa-envelope"></i> info@thecorushotel.com</p>
+                        </div>
+
+                        <!-- Social Media Links -->
+                        <div class="col-md-3">
+                            <h5>Follow Us</h5>
+                            <div class="social-icons">
+                                <a href="#" class="text-light mr-3"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="text-light mr-3"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="text-light mr-3"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-light mr-3"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Copyright -->
+                    <div class="text-center mt-4">
+                        <p>&copy; 2024 The Corus Hotel. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+
+
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

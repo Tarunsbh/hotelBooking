@@ -1,0 +1,75 @@
+{
+  "hotel": {
+    "hotelId": 1234,
+    "name": "The Corus Hotel",
+    "address": "Connaught Place, New Delhi, India",
+    "stars": 3.5,
+    "logo": "https://hotels.eglobe-solutions.com/eglobeimages/booking_engine/hotelcorus/hotelcorus_logo.jpg",
+    "rooms": [
+      {
+        "name": "Deluxe Room",
+        "info": "Spacious room with a king-sized bed, air conditioning, and free Wi-Fi."
+      },
+      {
+        "name": "Superior Room",
+        "info": "Elegant room with modern amenities, a queen-sized bed, and a city view."
+      }
+    ],
+    "reservationPolicy": "Check-in time: 2 PM. Check-out time: 12 PM. Free cancellation within 24 hours.",
+    "photoGallery": [
+      "content/Room photos/room1.jpg",
+      "/content/Room photos/room2.jpg",
+      "/content/Room photos/room3.png",
+      "/content/Room photos/room4.png",
+      "/content/Room photos/room2.jpg",
+      "/content/Room photos/room3.png",
+      "/content/Room photos/room2.jpg",
+      "/content/Room photos/room3.png",
+      "/content/Room photos/room2.jpg"
+    ],
+    "propertyInfo": "The Corus is one of the finest business hotels in New Delhi. We are located in the center of the Business Hub Inner Circle Connaught Place and thus, are the prime choice of tourists and business delegations coming from all parts of the world for their stay in the Indian capital. A unit of Runwell India Pvt. Ltd. we at The Corus believe in the best of service & hospitality to different types of travelers.",
+
+    "facilities": [
+      { "name": "Bar", "icon": "local_bar" },
+      { "name": "Business Center", "icon": "business_center" },
+      { "name": "Coffee Shop", "icon": "coffee" },
+      { "name": "Free Breakfast", "icon": "brunch_dining" },
+      { "name": "Free Newspaper", "icon": "newspaper" },
+      { "name": "Front Desk", "icon": "person" },
+      { "name": "Non Smoking", "icon": "smoke_free" },
+      { "name": "Restaurant", "icon": "restaurant" },
+      { "name": "Room Service", "icon": "room_service" },
+      { "name": "Safe Deposit Box", "icon": "lock" },
+      { "name": "Airport Shuttle", "icon": "airport_shuttle" },
+      { "name": "Internet", "icon": "wifi" },
+      { "name": "Laundry", "icon": "dry_cleaning" },
+      { "name": "Travel Desk", "icon": "flight" }
+    ],
+    "title": "Reservation Policy and Terms & Conditions",
+    "policyItems": [
+      "Early check-in or late check-out is subject to availability and may be chargeable by the hotel directly.",
+      "Check-in time is 2:00 PM, Check-out time is 11:00 AM.",
+      "Guests are required to produce a valid ID proof at the time of check-in.",
+      "Foreign guests need to produce a valid passport with a visa, whereas Indian guests need to produce a valid government-approved ID. PAN card will not be considered as proof.",
+      "Guests are required to show a photo identification and credit card upon check-in.",
+      "All special requests are subject to availability and additional charges may apply.",
+      {
+        "title": "Cancellation Policy",
+        "cancellationItems": [
+          "If cancelled before 7 days: 85% refund",
+          "Between 7 days - 72 hours: 50% refund",
+          "Less than 72 hours, No-Shows, or Early Checkout: No refund"
+        ]
+      },
+      "Local citizens of Delhi and Delhi NCR are not eligible for booking rooms.",
+      "We reserve the right to cancel or modify reservations where it appears that a customer has engaged in fraudulent or inappropriate activity or under other circumstances where it appears that the reservations contain or resulted from a mistake or error.",
+      "To make modifications or cancellations, please log in to the 'Cancel/Reschedule Booking' section on the booking page.",
+      "Visitors are not allowed in guest rooms.",
+      "Refunds shall be initiated within 48 hours of receiving the request, and the payment would be credited within 5-7 working days via the same mode as used while making the booking."
+    ],
+    "location": {
+      "latitude": "28.6315",
+      "longitude": "77.2167"
+    }
+  }
+}
